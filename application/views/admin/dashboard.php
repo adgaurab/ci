@@ -1,9 +1,22 @@
 <?php require_once('admin_header.php');?>
 
 <div class="container">
+	<div class="row">
+		<div class="col-lg-6">
+			<?= anchor('admin/add_article','Add article',['class'=>'btn btn-lg btn-primary'])?>
+		</div>
+	</div>
+	<?php if($feedback=$this->session->flashdata('feedback')):
+	$feedback_class=$this->session->flashdata('feedback_class')?>
+		  <div class="alert alert-dismissible <?= $feedback_class ?>">
+			  <?= $feedback ?>
+			  
+          <div>
+		  <?php endif; ?>
+		
 	<table class="table">
 		<thead>
-			<th>sr.no</th>
+			
 			<th>title</th>
 			<th>Action</th>
 		</thead>
@@ -11,12 +24,23 @@
 			<?php if(count($articles)): ?>
 			  <?php foreach($articles as $article):?>
 			<tr>
-			<td><?php echo $article + 1; ?></td>
+			
 			<td><?= $article->title ?></td>
 			<td>
-				<a href="" class="btn btn-primary">edit</a>
-				<a href="" class="btn btn-primary">delete</a>
-				
+				<div class="row">
+					<div class="col-lg-2">
+				<?= anchor("admin/edit_article/{$article->id}",'Edit',['class'=>'btn btn-primary']);?>
+					</div>
+				  <div class="row">
+					<div class="col-lg-2">
+				<?= 
+				form_open('admin/delete_article'),
+				form_hidden('article_id', $article->id),
+				form_submit(['name'=>'submit', 'value'=>'Delete', 'class'=>'btn btn-danger']),
+				form_close();
+				?>
+					  </div>
+					</div>
 				</td>
 			</tr>
 			<?php endforeach; ?>

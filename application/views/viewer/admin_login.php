@@ -18,6 +18,5 @@
 	    </form>
 		 		</div> 
 
-<?php include('partials/validation_errors.php');?>
 
 	<?php include('view_footer.php');?>

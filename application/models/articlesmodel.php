@@ -2,32 +2,12 @@
 
 class Articlesmodel extends CI_Model{
 	
-	//public function __construct()
-//{
- //   parent::__construct();
- 
-    // load Session Library
-    //$this->load->library('session');
-     
-//}
-//	public function articles_list()
-//	{
-//
-//		$user_id= $this->session->userdata('user_id'); 
-//		//print_r($user_id) ;die;
-//		$query=$this->db
-//			          ->select('title')
-//			            ->from('articles')
-//			             ->where('user_id','$user_id')
-//			            ->get();
-//		print_r($query) ;die;
-//		return $query->result();
-// }
+	
 public function articles_list()
 	{
 	   $user_id= $this->session->userdata('user_id');
 	   $sql = "SELECT
-					title
+					title, id
 				FROM
 					articles
 				WHERE
@@ -35,5 +15,27 @@ public function articles_list()
 	   return $this->db->query($sql)->result();
 	
 	}
-
+ public function add_article($array){
+    return $this->db->insert('articles',$array);
+ }
+ public function find_article($article_id){
+    $query = "SELECT
+					id,title,body
+				FROM
+					articles
+				WHERE
+					id=$article_id";
+	 return $this->db->query($query)->row();
+	
+ }
+ public function update_article($article_id, Array $article){
+    return $this->db
+		    ->where('id',$article_id)
+		    ->update('articles',$article);
+	
+ }
+ public function delete_article($article_id){
+    return $this->db->delete('articles',['id'=>$article_id]);
+ }
+	
 }  
