@@ -13,7 +13,9 @@ class Admin extends My_Controller{
 		
 		$articles =$this->articlesmodel->articles_list();
 		$this->load->view('admin/dashboard',['articles'=>$articles]);
+		
 	}
+	
 	
 	
 		

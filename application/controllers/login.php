@@ -5,13 +5,11 @@ class Login extends My_Controller {
 	{
 		$this->load->helper('form');
 		$this->load->view('viewer/admin_login');
+		if($this->session->userdata('user-id')){
+			return redirect ('admin/dashboard');
+		}
 	}
-	public function __construct()
-{
-        parent::__construct();
-        $this->load->library('session');
-        ...
-} 
+	
 	
 	public function admin_login()
 	{
@@ -33,7 +31,8 @@ class Login extends My_Controller {
 				return redirect('admin/dashboard');
 			
 			}else{
-				echo 'password do not match';
+				$this->session->set_flashdata('login_failed','Invalid username and password');
+				return redirect('login');
 		     }
 	       }else{
 			$this->load->view('viewer/admin_login');
@@ -41,4 +40,8 @@ class Login extends My_Controller {
 			
 	
 }
+	public function logout(){
+		$this->session->unset_userdata('user_id');
+		return redirect('login');
+	}
 }

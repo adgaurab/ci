@@ -11,7 +11,7 @@
 			<?php if(count($articles)): ?>
 			  <?php foreach($articles as $article):?>
 			<tr>
-			<td><?= $article->user_id ?></td>
+			<td><?php echo $article + 1; ?></td>
 			<td><?= $article->title ?></td>
 			<td>
 				<a href="" class="btn btn-primary">edit</a>

@@ -21,6 +21,6 @@
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
-	  <a class="nav-link" href="#">logout</a>
+	  <a class="nav-link" href="<?= base_url('login/logout')?>">logout</a>
   </div>
 </nav>
