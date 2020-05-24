@@ -16,15 +16,16 @@
 		
 	<table class="table">
 		<thead>
-			
+			<th>Sr. No</th>
 			<th>title</th>
 			<th>Action</th>
 		</thead>
 		<tbody>
-			<?php if(count($articles)): ?>
+			<?php if(count($articles)):
+			$count=$this->uri->segment(3,0);?>
 			  <?php foreach($articles as $article):?>
 			<tr>
-			
+				<td><?= ++$count ?></td>
 			<td><?= $article->title ?></td>
 			<td>
 				<div class="row">
@@ -51,6 +52,8 @@
 			<?php endif;?>
 		</tbody>
 	</table>
+			  
+		<?= $this->pagination->create_links(); ?>
 </div>
 			 
 	
