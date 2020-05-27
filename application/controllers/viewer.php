@@ -4,6 +4,8 @@ class Viewer extends My_Controller{
 	public function index()
 	{
 		$this->load->helper('form');
+		$this->load->helper('string');
+		
         $this->load->model('articlesmodel');
 		$this->load->library('pagination');
 		$config =[

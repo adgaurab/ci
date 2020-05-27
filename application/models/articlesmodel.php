@@ -19,7 +19,7 @@ public function articles_list($limit, $offset)
 	}
 	public function all_articles_list($limit,$offset){
 		$query= $this->db
-		    ->select(['title','id'])
+		    ->select(['title','id','body','created_at','image_path'])
 		    ->from('articles')
 		    ->limit($limit, $offset)
 			->order_by('created_at','DESC')
